@@ -20,7 +20,7 @@ jobs:
         
         # Copy files to their new locations
         cp -r Assets package/ProjectData~/Assets
-        cp -r Library/Artifacts package/ProjectData~/Library/Artifacts
+        # cp -r Library/Artifacts package/ProjectData~/Library/Artifacts
         cp -r Packages package/ProjectData~/Packages
         cp -r ProjectSettings package/ProjectData~/ProjectSettings
         rm -f package/ProjectData~/ProjectSettings/ProjectVersion.txt  # Remove specified file
