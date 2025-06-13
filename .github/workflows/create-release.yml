@@ -25,7 +25,7 @@ jobs:
         cp -r ProjectSettings package/ProjectData~/ProjectSettings
         rm -f package/ProjectData~/ProjectSettings/ProjectVersion.txt
         
-        cp VSMT.md package/Documentation~/VSMT.md
+        cp Documentation/VSMT.md package/Documentation~/VSMT.md
         cp README.md package/
         cp LICENSE package/
         cp package.json package/

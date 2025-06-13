@@ -75,7 +75,6 @@ namespace VirtualSkateMappingTools
 
             VSMTUtilities.OnAssetBundlesChanged += UpdateAssetBundleScrollView;
             VSMTBuildTools.BuildCompleted += (_) => UpdateAssetBundleScrollView();
-            EditorApplication.projectChanged += UpdateAssetBundleScrollView;
         }
 
         private void UpdateAssetBundleScrollView()
@@ -104,8 +103,6 @@ namespace VirtualSkateMappingTools
             {
                 _assetBundleScrollView.Add(new Label("No maps are currently built."));
             }
-
-            Repaint();
         }
     }
 }
