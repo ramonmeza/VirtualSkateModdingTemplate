@@ -89,17 +89,21 @@ namespace VirtualSkateMappingTools
             foreach (var assetBundle in AssetDatabase.GetAllAssetBundleNames())
             {
                 var mapPath = Path.Combine(Application.dataPath, "../AssetBundles", assetBundle);
-                if (!File.Exists(mapPath))
+                Debug.Log(mapPath);
+                if (File.Exists(mapPath))
                 {
-                    continue;
+                    var btn = new Button(() =>
+                    {
+                        VSMTUtilities.CopyAssetBundleToGameDir(assetBundle);
+                    });
+                    btn.text = $"Copy {assetBundle} to Mod Maps Directory";
+                    _assetBundleScrollView.Add(btn);
                 }
+            }
 
-                var btn = new Button(() =>
-                {
-                    VSMTUtilities.CopyAssetBundleToGameDir(assetBundle);
-                });
-                btn.text = $"Copy {assetBundle} to Mod Maps Directory";
-                _assetBundleScrollView.Add(btn);
+            if (_assetBundleScrollView.childCount == 0)
+            {
+                _assetBundleScrollView.Add(new Label("No maps are currently built."));
             }
 
             Repaint();
