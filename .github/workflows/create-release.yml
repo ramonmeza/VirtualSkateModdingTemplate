@@ -1,0 +1,58 @@
+name: Create Structured Package Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  create-structured-release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create package structure
+      run: |
+        # Create directory structure
+        mkdir -p package/ProjectData~
+        mkdir -p package/Documentation~
+        
+        # Copy files to their new locations
+        cp -r Assets package/ProjectData~/Assets
+        cp -r Library/Artifacts package/ProjectData~/Library/Artifacts
+        cp -r Packages package/ProjectData~/Packages
+        cp -r ProjectSettings package/ProjectData~/ProjectSettings
+        rm -f package/ProjectData~/ProjectSettings/ProjectVersion.txt  # Remove specified file
+        
+        cp VSMT.md package/Documentation~/VSMT.md
+        cp README.md package/
+        cp LICENSE package/
+        cp package.json package/
+
+    - name: Create TGZ archive
+      run: tar -czf structured-package.tgz package/
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./structured-package.tgz
+        asset_name: structured-package.tgz
+        asset_content_type: application/gzip
+
+    - name: Clean up
+      run: rm -rf package/ structured-package.tgz
