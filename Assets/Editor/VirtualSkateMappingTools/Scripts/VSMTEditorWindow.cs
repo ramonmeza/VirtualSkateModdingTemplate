@@ -89,7 +89,6 @@ namespace VirtualSkateMappingTools
             foreach (var assetBundle in AssetDatabase.GetAllAssetBundleNames())
             {
                 var mapPath = Path.Combine(Application.dataPath, "../AssetBundles", assetBundle);
-                Debug.Log(mapPath);
                 if (File.Exists(mapPath))
                 {
                     var btn = new Button(() =>
