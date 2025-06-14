@@ -1,4 +1,43 @@
-## Overview
+# Virtual Skate Modding Template
+
+A template Unity project geared towards the creation of modded maps for the game Virtual Skate.
+
+## Installation
+
+There are two ways to use this template. You can download a release `.tgz` file and add it to your project templates within Unity, or you can download the source code directly and import it as a project. The next sections will be a guide on both scenarios and should provide you with insights to determine which option you should choose.
+
+### Prerequisites
+You must download and install the following software in order to properly use this template:
+
+- [Unity 2021.3.30](https://unity.com/releases/editor/whats-new/2021.3.30)
+- [Mega's Custom Map Mod](https://docs.google.com/document/d/1Qghg1Kkx09hYcLQpxWYUEvN1xO0poe6czeNuar18Gl4/edit?tab=t.0)
+
+### Installing from Source Code (Preferred)
+1. Navigate to the Release page for this project: https://github.com/ramonmeza/VirtualSkateModdingTemplate/releases
+1. Select the desired release, probably whatever is latest
+1. Under the Assets list, select `Source code (zip)` to download the source code for this release
+1. Once downloaded, extract the contents onto your local drive.
+1. In Unity Hub, press the "Add" button and select "Add project from disk"
+1. Select the folder you extracted
+
+The Unity editor will now open the project, and you will be able to start developing your map.
+
+### Installing the Project Template
+1. Navigate to the Release page for this project: https://github.com/ramonmeza/VirtualSkateModdingTemplate/releases
+1. Select the desired release, probably whatever is latest
+1. Under the Assets list, select `com.unity.template.vsmt-x.x.x.tgz` to download the template project.
+1. Once downloaded, open Unity Hub and navigate to the "Installs" list
+1. Find Unity 2021.3.30 from the list, click on the gear icon and select "Show in Explorer"
+1. Navigate the directory to this location: `\Data\Resources\PackageManager\ProjectTemplates`
+1. Place the downloaded `com.unity.template.vsmt-x.x.x.tgz` into this location, alongside the other default template projects.
+1. Restart Unity Hub
+1. In Unity Hub, press the "New Project" button.
+1. In the list of template projects, select "Virtual Skate Modding Template", name your project and press "Create Project"
+
+The Unity editor will now open a new project and apply the template for you. You are now one step close to creating the map of your dreams.
+
+
+## Assets Overview
 I want to demystify and simplify the process of creating a level as best I can. I've included tools and prefabs that should aid you in your map making journey. Let's take a quick look at these included assets and how I use them.
 
 ### Prototyping Shapes
@@ -27,7 +66,7 @@ This one is essential for fun. It is what it is, not much explaining needed.
 Each of these Prototyping Shapes are a prefab, which corrects their orientation, sets their pivot point to the corner for ease of snapping, gives them a basic Collider component, and applies a World UV (triplanar) material to them. I've included the `.blend` file for each, in case you want to tweak the prototyping objects. Realistic, they are just for prototyping. You will be replacing them with different assets 90% of the time (described below).
 
 
-### High-Level Workflow
+## Workflow Overview
 In this section I'll be showcasing my workflow and providing as much insight into the process of level creation as I possibly can. There's no right or wrong way to create a map, but over the years I've tried many different workflows and have found that the best way to develop your skills is by practicing, sharing your discoveries and insights, and learning through observing others' workflows.
 
 At a high-level, my workflow consists of these continually intertwining stages, with frequent play-testing to ensure things are working smoothly in-game:
