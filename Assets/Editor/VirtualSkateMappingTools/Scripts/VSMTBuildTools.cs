@@ -53,13 +53,16 @@ namespace VirtualSkateMappingTools
                     Directory.CreateDirectory(outputPath);
                 }
 
+
+
                 Debug.Log("Building AssetBundle...");
+                AssetBundleBuild buildMap = new AssetBundleBuild
+                {
+                    assetBundleName = mapAssetBundleName,
+                    assetNames = AssetDatabase.GetAssetPathsFromAssetBundle(mapAssetBundleName)
+                };
                 var target = EditorUserBuildSettings.activeBuildTarget;
-                BuildPipeline.BuildAssetBundles(
-                    outputPath,
-                    BuildAssetBundleOptions.None,
-                    target
-                );
+                BuildPipeline.BuildAssetBundles(outputPath, new[] { buildMap }, BuildAssetBundleOptions.None, target);
                 EditorApplication.delayCall += AssetDatabase.Refresh;
                 Debug.Log($"Map build successful: {outputPath}");
             }
