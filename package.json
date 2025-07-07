@@ -1,7 +1,7 @@
 {
   "name": "com.unity.template.vsmt",
   "displayName": "Virtual Skate Mapping Template",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "template",
   "host": "hub",
   "unity": "2021.3.30",

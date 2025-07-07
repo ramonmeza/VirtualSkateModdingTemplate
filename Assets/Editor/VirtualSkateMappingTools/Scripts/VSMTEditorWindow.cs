@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -50,14 +51,48 @@ namespace VirtualSkateMappingTools
             group.Add(createMapBtn);
             rootVisualElement.Add(group);
 
+            group = new GroupBox("Lighting");
+            var offsetField = new Vector3Field("Light Probe Offset");
+            offsetField.value = new Vector3(0f, 0.25f, 0f);
+            group.Add(offsetField);
+
+            var areaSizeField = new Vector3Field("Light Probe Size");
+            areaSizeField.value = new Vector3(20f, 5f, 30f);
+            group.Add(areaSizeField);
+
+            var spacingField = new FloatField("Light Probe Spacing");
+            spacingField.value = 20f;
+            group.Add(spacingField);
+
+            var probeTestSizeField = new FloatField("Probe Test Size");
+            probeTestSizeField.value = 0.25f;
+            group.Add(probeTestSizeField);
+
+            var generateLightProbesBtn = new Button();
+            generateLightProbesBtn.text = "Generate Light Probes";
+            generateLightProbesBtn.clicked += () =>
+            {
+                try
+                {
+                    generateLightProbesBtn.SetEnabled(false);
+                    VSMTLightingTools.GenerateLightProbes(offsetField.value, areaSizeField.value, spacingField.value, probeTestSizeField.value);
+                }
+                finally
+                {
+                    generateLightProbesBtn.SetEnabled(true);
+                }
+            };
+            group.Add(generateLightProbesBtn);
+            rootVisualElement.Add(group);
+
             group = new GroupBox("Build");
             var buildBtn = new Button();
             buildBtn.text = "Build Currently Loaded Map";
             buildBtn.clicked += () =>
             {
-                buildBtn.SetEnabled(false);
                 try
                 {
+                    buildBtn.SetEnabled(false);
                     VSMTBuildTools.BuildCurrentMap();
                 }
                 finally
